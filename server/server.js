@@ -5,10 +5,13 @@ import bodyParser from 'body-parser'
 import sockjs from 'sockjs'
 import { renderToStaticNodeStream } from 'react-dom/server'
 import React from 'react'
-
 import cookieParser from 'cookie-parser'
+import csv from 'csvtojson'
+
 import config from './config'
 import Html from '../client/html'
+
+const csvFilePath = 'server/data/citizens.csv'
 
 require('colors')
 
@@ -34,6 +37,13 @@ const middleware = [
 ]
 
 middleware.forEach((it) => server.use(it))
+
+// 10.100.0.172:8090/api/v1/test
+
+server.get('/api/v1/citizens', async (req, res) => {
+  const citizens = await csv().fromFile(csvFilePath)
+  res.json(citizens)
+})
 
 server.use('/api/', (req, res) => {
   res.status(404)
