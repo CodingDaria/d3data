@@ -1,27 +1,31 @@
-import React, { useState } from 'react'
-import axios from 'axios'
+import React from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import Head from './head'
 import Nation from './nation'
-// import Age from './age'
+import Age from './age'
 // import Graph from './graph'
+import { getCitizens } from '../redux/reducers/citizens'
 
 const Home = () => {
-  const [text, setText] = useState({})
+  const citizens = useSelector(({ citizens: data }) => data.citizens)
+  const dispatch = useDispatch()
   return (
     <div>
       <Head title="Population" />
-      <Nation />
-      {/* <Age />
-      <Graph /> */}
+      <div className="flex p-2">
+        <Nation />
+        <Age />
+      </div>
+      {/* <Graph /> */}
       <button
         type="button"
         onClick={() => {
-          axios('/api/v1/citizens').then(({ data: citizens }) => setText(citizens))
+          dispatch(getCitizens())
         }}
       >
         Click me!
       </button>
-      <div>{JSON.stringify(text)}</div>
+      <div>{JSON.stringify(citizens)}</div>
     </div>
   )
 }
