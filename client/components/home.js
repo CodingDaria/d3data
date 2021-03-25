@@ -11,7 +11,7 @@ const Home = () => {
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(getCitizens())
-  }, [chosenCitizens])
+  }, [])
   return (
     <div>
       <Head title="Population" />
