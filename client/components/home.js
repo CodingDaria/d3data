@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import Head from './head'
 import Nation from './nation'
@@ -7,8 +7,11 @@ import Age from './age'
 import { getCitizens } from '../redux/reducers/citizens'
 
 const Home = () => {
-  const citizens = useSelector(({ citizens: data }) => data.citizens)
+  const chosenCitizens = useSelector(({ citizensReducer }) => citizensReducer.chosenGroups)
   const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(getCitizens())
+  }, [chosenCitizens])
   return (
     <div>
       <Head title="Population" />
@@ -17,15 +20,15 @@ const Home = () => {
         <Age />
       </div>
       {/* <Graph /> */}
-      <button
+      {/* <button
         type="button"
         onClick={() => {
           dispatch(getCitizens())
         }}
       >
         Click me!
-      </button>
-      <div>{JSON.stringify(citizens)}</div>
+      </button> */}
+      <div>{JSON.stringify(chosenCitizens)}</div>
     </div>
   )
 }

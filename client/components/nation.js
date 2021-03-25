@@ -3,8 +3,7 @@ import { useSelector } from 'react-redux'
 import Point from './listpoint'
 
 const Nation = () => {
-  const citizens = useSelector(({ citizens: data }) => data.citizens)
-  const nations = citizens.map((group) => group.level_1).filter((it, index, array) => index === array.indexOf(it))
+  const nations = useSelector(({ citizensReducer }) => citizensReducer.levels_1)
   return (
     <div className="m-2 p-2">
       <div className="text-xl font-bold mb-2">Ethnic group</div>
