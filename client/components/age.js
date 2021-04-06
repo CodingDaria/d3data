@@ -9,7 +9,7 @@ const Age = () => {
       <div className="text-xl font-bold mb-2">Age group</div>
       <div>
         {ageGroups.map((age) => {
-          return <Point key={age} item={age} />
+          return <Point key={age.name} item={age.name} level="levels_2" isChecked={age.isChecked} />
         })}
       </div>
     </div>

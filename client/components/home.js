@@ -7,7 +7,8 @@ import Age from './age'
 import { getCitizens } from '../redux/reducers/citizens'
 
 const Home = () => {
-  const chosenCitizens = useSelector(({ citizensReducer }) => citizensReducer.chosenGroups)
+  // const checkedCitizens = useSelector(({ citizensReducer }) => citizensReducer.checked)
+  const nations = useSelector(({ citizensReducer }) => citizensReducer.levels_1)
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(getCitizens())
@@ -28,7 +29,7 @@ const Home = () => {
       >
         Click me!
       </button> */}
-      <div>{JSON.stringify(chosenCitizens)}</div>
+      <div>{JSON.stringify(nations)}</div>
     </div>
   )
 }

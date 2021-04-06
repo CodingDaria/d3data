@@ -9,7 +9,14 @@ const Nation = () => {
       <div className="text-xl font-bold mb-2">Ethnic group</div>
       <div>
         {nations.map((nation) => {
-          return <Point key={nation} item={nation} />
+          return (
+            <Point
+              key={nation.name}
+              item={nation.name}
+              level="levels_1"
+              isChecked={nation.isChecked}
+            />
+          )
         })}
       </div>
     </div>

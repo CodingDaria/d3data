@@ -1,20 +1,19 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { setChosenGroups, removeGroup } from '../redux/reducers/citizens'
+import { setChosenGroups } from '../redux/reducers/citizens'
 
-const Point = ({ item }) => {
-  const [isChecked, setChecked] = useState(false)
+const Point = ({ item, level, isChecked }) => {
+  const [isCheckedInput, setChecked] = useState(isChecked)
   const dispatch = useDispatch()
   return (
     <div>
       <input
         type="checkbox"
         className="mr-2"
-        checked={isChecked}
+        checked={isCheckedInput}
         onChange={(e) => {
           setChecked(e.target.checked)
-          if (e.target.checked) dispatch(setChosenGroups(item))
-          if (!e.target.checked) dispatch(removeGroup(item))
+          dispatch(setChosenGroups(item, level, !isCheckedInput))
         }}
         id={item}
       />
